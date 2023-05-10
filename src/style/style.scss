@@ -1,0 +1,76 @@
+
+html {
+    height: 100vh;
+    width: 100vw;
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+
+    .navlist{
+        list-style: none;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        background-color: red;
+        margin: 0px;
+        gap: 10rem;
+        justify-content: center;
+    }
+
+    .bigText {
+        font-size: 5vw;
+        color: black;
+        font-weight: bold;
+    }
+
+    .mediumText {
+        font-size: 2.5vw;
+        font-weight: 400;
+        color: black;
+    }
+    .smallText {
+        font-size: 1.5vw;
+        font-weight: 200;
+        color: black;
+    }
+    .ultraSmallText {
+        font-size: 0.75vw;
+    }
+    .item {
+        height: 20vw;
+        width: 30vw;
+        background-color: white;
+        border: 2px solid wheat;
+
+        img {
+            height: 5vw;
+            width: 5vw;
+        }
+    }
+    .homeGrid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        height: auto;
+        width: 50vw;
+        background-color: aqua;
+        margin: 0 auto;
+    }
+
+    .checkout {
+        position: relative;
+        z-index: 5;
+        background-color: blue;
+        width: 40vw;
+        height: 100vh;
+        margin-top: -6vw;
+        
+        float: right;
+    }
+}
