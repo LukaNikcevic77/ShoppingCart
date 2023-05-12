@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import Item from "./Item";
 import '../style/style.scss'
 
 
@@ -14,22 +15,15 @@ function Shop(props) {
 
         props.selectedItems(newArej);
     }
+
+    
     
     return (
         
         <div className="homeGrid">
-            {items.map((item) => (
-                <div className="item" key={item.id}>
-                    
-                 <h1 className="smallText"></h1>
-                    <img src={item.image} alt="" />
-                    <h1>{item.title}</h1>
-                    <p className="ultraSmallText">{item.description}</p>
-                    <p className="ultraSmallText">{item.price}</p>
-                    <button className="mediumText" onClick={() => onBeingClicked(items[item.id - 1])}>Add me to cart! {item.id}</button>
-                
-            </div>
-            ))}
+            {items.map((item) => 
+            <Item items={item} onBeingClicked={onBeingClicked}/>
+        )}
         </div>
         
     )

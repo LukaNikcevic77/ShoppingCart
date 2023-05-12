@@ -43,7 +43,7 @@ body {
         font-size: 0.75vw;
     }
     .item {
-        height: 20vw;
+        height: auto;
         width: 30vw;
         background-color: white;
         border: 2px solid wheat;
@@ -51,6 +51,13 @@ body {
         img {
             height: 5vw;
             width: 5vw;
+        }
+
+        .addButton {
+            height: 2.5vw;
+            width: 2.5vw;
+            border: none;
+            border-radius: 50%;
         }
     }
     .homeGrid {

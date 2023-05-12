@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from "react";
+import Item from "./Item";
 import '../style/style.scss'
 
 function Navigation(props) {
 
     const [visible, setVisible] = useState('none')
     const [buyingItems, setBuyingItems] = useState(props.itemsToBuy);
+
     function hideUnhide() {
         if(visible === 'none'){
             setVisible('')
@@ -21,7 +23,7 @@ function Navigation(props) {
         console.log(newArej);
     }, [props.itemsToBuy])
 
-    function RemoveItem(e, b) {
+    function RemoveItem( b) {
         
         
         let oldArej = [...props.itemsToBuy];
@@ -31,6 +33,7 @@ function Navigation(props) {
         
         
     }
+    
     return(
         <>
         <div>
@@ -45,18 +48,9 @@ function Navigation(props) {
             </ul>
         </div>
         <aside className="checkout"  style={{display : `${visible}`}}>
-                {buyingItems.map((item) => (
-                <div className="item" key={item.id}>
-                  
-                 <h1 className="smallText">This is my id: {item.id}</h1>
-                    <img src={item.image} alt="" />
-                    <h1>{item.title}</h1>
-                    <p className="ultraSmallText">{item.description}</p>
-                    <p className="ultraSmallText">{item.price}</p>
-                    <button onClick={(e) => RemoveItem(e, item)}>Remove papa!</button>
-                    
-            </div>
-            ))}
+        {buyingItems.map((tshi) => 
+            <Item items={tshi} showAddCart={'none'} itemRemove={RemoveItem}/>
+        )}
             <button onClick={hideUnhide} className="mediumText">Hide cart!</button>
             <h1 className="mediumText">{buyingItems.length}</h1>
         </aside>

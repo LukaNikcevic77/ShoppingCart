@@ -16,6 +16,8 @@ function App() {
 
   function updateCart(a) {
     setCartItems(a);
+    console.log("Ovo je a");
+    console.log(a);
   }
   
 

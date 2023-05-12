@@ -1,0 +1,12 @@
+{buyingItems.map((item) => (
+                <div className="item" key={item.id}>
+                  
+                 <h1 className="smallText">This is my id: {item.id}</h1>
+                    <img src={item.image} alt="" />
+                    <h1>{item.title}</h1>
+                    <p className="ultraSmallText">{item.description}</p>
+                    <p className="ultraSmallText">{item.price}</p>
+                    <button className="smallText" onClick={(e) => RemoveItem(e, item)}>Remove papa!</button>
+                    
+            </div>
+            ))}
