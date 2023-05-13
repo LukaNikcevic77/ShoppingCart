@@ -1,11 +1,17 @@
-import React, {useState, useEffect} from "react";
-import Item from "./Item";
+import React, {useState, useEffect, useContext} from "react";
+import CartItemDisplay from "./cartItems";
+import { ShoppingCartContext } from "../context/shopping-cart";
+
 import '../style/style.scss'
+import { Link } from "react-router-dom";
 
 function Navigation(props) {
 
-    const [visible, setVisible] = useState('none')
-    const [buyingItems, setBuyingItems] = useState(props.itemsToBuy);
+    const {shoppingCartItems, setShoppingCartItems, addToCart, removeFromCart} = useContext(ShoppingCartContext);
+    
+    const [visible, setVisible] = useState('none');
+
+    let items = props.itemsToBuy;
 
     function hideUnhide() {
         if(visible === 'none'){
@@ -16,43 +22,34 @@ function Navigation(props) {
         }
     }
 
-    useEffect(() => {
-        let newArej = [...props.itemsToBuy];
-        setBuyingItems(newArej);
-        console.log("Ce se vrnem jebem ti decu! ");
-        console.log(newArej);
-    }, [props.itemsToBuy])
-
-    function RemoveItem( b) {
-        
-        
-        let oldArej = [...props.itemsToBuy];
-        let newArej = oldArej.filter(ajtem => ajtem != b);
-        props.updateMyCart(newArej);
-
-        
-        
-    }
+    
     
     return(
         <>
         <div>
             <ul className="navlist bigText">
                 <li>
-                    Home
+                    <Link to="/home">
+                        Home 
+                    </Link>
+                   
                 </li>
                 <li>
-                    Store
+                    <Link to="/">Store</Link>
                 </li>
                 <button onClick={hideUnhide} className="mediumText">See cart</button>
             </ul>
         </div>
         <aside className="checkout"  style={{display : `${visible}`}}>
-        {buyingItems.map((tshi) => 
-            <Item items={tshi} showAddCart={'none'} itemRemove={RemoveItem}/>
+        {items.map((ajtem) => {
+            if(shoppingCartItems[ajtem.id] > 0){
+                return (<CartItemDisplay items = {ajtem} />);
+                
+            }
+        }
         )}
             <button onClick={hideUnhide} className="mediumText">Hide cart!</button>
-            <h1 className="mediumText">{buyingItems.length}</h1>
+           
         </aside>
         </>
     )

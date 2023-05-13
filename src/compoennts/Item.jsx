@@ -1,13 +1,15 @@
-import React, {useState, useEffect} from "react";
-
+import React, {useState, useEffect, useContext} from "react";
+import { ShoppingCartContext } from "../context/shopping-cart";
 function Item(props) {
 
-    const [canBeAded, setCanBeAded] = useState(false);
+    const {shoppingCartItems, setShoppingCartItems, addToCart, removeFromCart} = useContext(ShoppingCartContext);
 
+    const [canBeAded, setCanBeAded] = useState(false);
     function changeStateOfAddCart(a){
         setCanBeAded(a);
         console.log(a);
     }
+
     
     return (
         <div className="item" key={props.items.id}>
@@ -18,10 +20,8 @@ function Item(props) {
                     <p className="ultraSmallText">{props.items.description}</p>
                     <p className="ultraSmallText">{props.items.price}</p>
                     
-                    <button className="mediumText" disabled={canBeAded} onClick={() => {props.onBeingClicked(props.items); changeStateOfAddCart(true)}}  style={
-                        {display: props.showAddCart}
-                    } >Add me to cart! {props.items.id}</button>
-                    <button className="mediumText" onClick={() => {props.itemRemove(props.items); changeStateOfAddCart(false)}}>Remove item</button>
+                    <button className="mediumText"  onClick={() => addToCart(props.items.id)} >Add me to cart! {props.items.id}</button>
+                    <h1 className="mediumText">{shoppingCartItems[props.items.id]}</h1>
                 
             </div>
     )
